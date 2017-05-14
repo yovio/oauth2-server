@@ -8,6 +8,8 @@ const session = require('express-session');
 const passport = require('passport');
 const routes = require('./routes');
 
+const portNumber = process.env.PORT || 3000;
+
 // Express configuration
 const app = express();
 app.set('view engine', 'ejs');
@@ -35,4 +37,7 @@ app.post('/oauth/token', routes.oauth2.token);
 app.get('/api/userinfo', routes.user.info);
 app.get('/api/clientinfo', routes.client.info);
 
-app.listen(process.env.PORT || 3000);
+
+app.listen(portNumber);
+
+console.info('OAuth2 server started at http://localhost:%d', portNumber);
